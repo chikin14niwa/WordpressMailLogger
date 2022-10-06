@@ -1,0 +1,12 @@
+{
+	"core": null,
+	"port": 8900,
+	"plugins": [
+		"."
+	],
+	"env" : {
+		"tests": {
+			"port": 8901
+		}
+	}
+}
