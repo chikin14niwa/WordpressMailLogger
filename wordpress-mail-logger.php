@@ -26,3 +26,30 @@ namespace Plugin\WordpressMailLogger;
 if (!defined('WPINC')) {
   die;
 }
+
+require_once(__DIR__ . '/class-logger.php');
+
+$log_dir = __DIR__ . '/log';
+if (!file_exists($log_dir)) {
+  if (!mkdir($log_dir)) {
+    die;
+  }
+}
+
+function save_success($messageArgs)
+{
+  $filename = 'mail.log';
+  $logger = new Logger();
+  $logger->open($filename);
+  $logger->write(new LogData($messageArgs, null));
+}
+\add_action('wp_mail', 'Plugin\\WordpressMailLogger\\save_success');
+
+function save_failure($error)
+{
+  $filename = 'mail.log';
+  $logger = new Logger();
+  $logger->open($filename);
+  $logger->write(new LogData([], $error));
+}
+\add_action('wp_mail_failed', 'Plugin\\WordpressMailLogger\\save_failure');
