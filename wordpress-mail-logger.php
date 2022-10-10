@@ -23,18 +23,29 @@
  */
 namespace Plugin\WordpressMailLogger;
 
+use AdminMenuOption;
+
 if (!defined('WPINC')) {
   die;
 }
 
+require_once(__DIR__ . '/../../../wp-includes/pluggable.php');
+require_once(__DIR__ . '/../../../wp-admin/includes/plugin.php');
 require_once(__DIR__ . '/class-logger.php');
+require_once(__DIR__ . '/class-admin-menu-option.php');
 
+// 初期設定
 $log_dir = __DIR__ . '/log';
 if (!file_exists($log_dir)) {
   if (!mkdir($log_dir)) {
     die;
   }
 }
+
+// Adminページへのメニューの表示
+$slug = 'wordpress_mail_logger';
+$optionPage = new AdminMenuOption();
+$optionPage->setup($slug);
 
 function save_success($messageArgs)
 {
