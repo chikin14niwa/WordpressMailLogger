@@ -5,17 +5,17 @@ class MailLog
 {
   public $to;
   public $subject;
-  public $message;
+  // public $message;
   public $headers;
-  public $attachments;
+  // public $attachments;
 
   public function __construct($messageArgs)
   {
     $this->to = $messageArgs['to'];
     $this->subject = $messageArgs['subject'];
-    $this->message = $messageArgs['message'];
+    // $this->message = $messageArgs['message'];
     $this->headers = $messageArgs['headers'];
-    $this->attachments = $messageArgs['attachments'];
+    // $this->attachments = $messageArgs['attachments'];
   }
 }
 
