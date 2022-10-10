@@ -38,7 +38,7 @@ if (!file_exists($log_dir)) {
 
 function save_success($messageArgs)
 {
-  $filename = 'mail.log';
+  $filename = 'mail' . date('Ymd') . '.log';
   $logger = new Logger();
   $logger->open($filename);
   $logger->write(new LogData($messageArgs, null));
