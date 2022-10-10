@@ -47,7 +47,7 @@ function save_success($messageArgs)
 
 function save_failure($error)
 {
-  $filename = 'mail.log';
+  $filename = 'mail' . date('Ymd') . '.log';
   $logger = new Logger();
   $logger->open($filename);
   $logger->write(new LogData([], $error));
